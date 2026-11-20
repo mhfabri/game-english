@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Time Travelers — Mission to the Future</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--bg:#070914;--panel:#11172a;--panel2:#171f38;--cyan:#50e6ff;--purple:#a78bfa;--pink:#ff5fbd;--green:#65f0b2;--red:#ff6b79;--muted:#a4aecb;--white:#f5f7ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 20% 10%,#18214b 0,transparent 38%),radial-gradient(ellipse at 85% 70%,#241344 0,transparent 35%),var(--bg);color:var(--white);font-family:Inter,Arial,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(rgba(80,230,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(80,230,255,.08) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
+button{font:inherit;cursor:pointer}.screen{display:none;min-height:100vh;position:relative;z-index:1}.screen.active{display:flex}.wrap{width:min(1120px,92%);margin:auto}
+#home{align-items:center;justify-content:center;text-align:center;padding:50px 0}.eyebrow{font:600 11px Orbitron;letter-spacing:4px;color:var(--cyan);text-transform:uppercase}.logo{font:800 clamp(42px,8vw,88px)/.98 Orbitron;letter-spacing:-4px;margin:22px 0 12px;text-shadow:0 0 30px #50e6ff55}.logo span{color:var(--cyan)}.subtitle{color:var(--muted);letter-spacing:3px;font:500 12px Orbitron}.portal{width:min(330px,70vw);aspect-ratio:1;margin:34px auto 28px;border-radius:50%;position:relative;background:radial-gradient(circle,#50e6ff22 0 25%,#a78bfa18 43%,transparent 68%);display:grid;place-items:center}.portal:before,.portal:after{content:"";position:absolute;border:1px solid #50e6ff88;border-radius:50%;inset:7%;box-shadow:0 0 35px #50e6ff33,inset 0 0 35px #50e6ff22;animation:spin 18s linear infinite}.portal:after{inset:17%;border-color:#a78bfa99;animation-direction:reverse;animation-duration:12s}.portal-icon{font-size:100px;filter:drop-shadow(0 0 25px #50e6ff);animation:pulse 3s infinite}.intro{max-width:650px;margin:0 auto 28px;color:#c1c9e0;line-height:1.7}.primary,.secondary{border:0;border-radius:9px;padding:16px 28px;font:700 12px Orbitron;letter-spacing:2px;transition:.2s}.primary{color:#07101b;background:linear-gradient(100deg,var(--cyan),#a78bfa);box-shadow:0 0 28px #50e6ff44}.primary:hover{transform:translateY(-3px);box-shadow:0 0 40px #50e6ff77}.secondary{background:#ffffff0c;color:var(--white);border:1px solid #ffffff22}.secondary:hover{border-color:var(--cyan);color:var(--cyan)}.hint{font-size:11px;color:#7884a8;margin-top:20px}
+#game{padding:28px 0 50px;align-items:flex-start}.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:28px}.mini-logo{font:700 16px Orbitron;letter-spacing:1px}.mini-logo span{color:var(--cyan)}.stats{display:flex;gap:10px}.stat{background:#11172add;border:1px solid #ffffff18;border-radius:8px;padding:10px 14px;min-width:90px}.stat small{display:block;color:var(--muted);font:10px Orbitron;letter-spacing:1px}.stat strong{font:700 18px Orbitron}
+.progress-wrap{margin-bottom:22px}.progress-label{display:flex;justify-content:space-between;color:var(--muted);font:10px Orbitron;letter-spacing:1px;margin-bottom:8px}.progress{height:5px;background:#ffffff13;border-radius:10px;overflow:hidden}.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width .4s}
+.mission-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:stretch}.mission-card,.side-card{background:linear-gradient(145deg,#151d35ed,#0d1224ed);border:1px solid #ffffff1c;border-radius:16px;overflow:hidden;box-shadow:0 20px 70px #0005}.mission-art{height:220px;position:relative;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at center,#273c69,#11172a 65%)}.mission-art:before{content:"";position:absolute;width:220px;height:220px;border:1px solid #50e6ff66;border-radius:50%;box-shadow:0 0 40px #50e6ff22,inset 0 0 40px #50e6ff22}.mission-art:after{content:"";position:absolute;width:160px;height:160px;border:1px dashed #a78bfa88;border-radius:50%;animation:spin 20s linear infinite}.art-emoji{font-size:84px;z-index:1;filter:drop-shadow(0 0 22px #50e6ff88)}.mission-content{padding:26px}.tag{display:inline-block;border-radius:4px;padding:7px 10px;font:700 9px Orbitron;letter-spacing:1.5px;background:#50e6ff18;color:var(--cyan);border:1px solid #50e6ff44}.tag.plan{background:#65f0b21a;color:var(--green);border-color:#65f0b255}.tag.evidence{background:#ff5fbd1a;color:var(--pink);border-color:#ff5fbd55}.mission-content h1{font:700 clamp(21px,3vw,30px) Orbitron;line-height:1.25;margin:17px 0 10px}.scenario{color:#bdc6df;line-height:1.65;font-size:14px;margin:0 0 22px}.sentence{font-size:18px;line-height:1.6;background:#080d1c;border:1px solid #ffffff18;border-left:3px solid var(--cyan);padding:17px;border-radius:8px;margin-bottom:20px}.blank{color:var(--cyan);font-weight:800;letter-spacing:1px}.answers{display:grid;gap:10px}.answer{width:100%;text-align:left;background:#ffffff08;color:var(--white);border:1px solid #ffffff20;border-radius:8px;padding:15px 17px;display:flex;align-items:center;gap:12px;transition:.2s}.answer:hover:not(:disabled){border-color:var(--cyan);background:#50e6ff12;transform:translateX(3px)}.answer .letter{width:27px;height:27px;display:grid;place-items:center;border-radius:6px;background:#ffffff12;color:var(--cyan);font:700 11px Orbitron}.answer.correct{border-color:var(--green);background:#65f0b218}.answer.wrong{border-color:var(--red);background:#ff6b7918}.answer:disabled{cursor:default;opacity:1}.feedback{display:none;margin-top:16px;padding:15px;border-radius:8px;line-height:1.55;font-size:13px}.feedback.show{display:block}.feedback.good{background:#65f0b215;border:1px solid #65f0b255;color:#caffea}.feedback.bad{background:#ff6b7915;border:1px solid #ff6b7955;color:#ffd9dd}.feedback strong{display:block;font:700 11px Orbitron;letter-spacing:1px;margin-bottom:5px}.mission-actions{display:flex;justify-content:flex-end;margin-top:18px}.side-card{padding:22px}.side-title{font:700 11px Orbitron;letter-spacing:2px;color:var(--muted);margin-bottom:18px}.rule{padding:15px;border-radius:9px;margin-bottom:12px;border:1px solid #ffffff15;background:#ffffff06}.rule h3{font:700 13px Orbitron;margin:0 0 8px}.rule p{font-size:12px;line-height:1.6;color:#aeb8d3;margin:0}.rule.will h3{color:var(--cyan)}.rule.going h3{color:var(--green)}.rule b{color:var(--white)}.tip{font-size:11px;color:#8995b7;line-height:1.6;margin-top:18px;padding-top:16px;border-top:1px solid #ffffff15}
+#result{align-items:center;justify-content:center;text-align:center;padding:40px 0}.result-panel{max-width:650px;margin:auto;background:linear-gradient(145deg,#151d35ed,#0d1224ed);border:1px solid #ffffff22;border-radius:18px;padding:45px 30px;box-shadow:0 20px 80px #0006}.trophy{font-size:76px;filter:drop-shadow(0 0 20px #facc15)}.result-panel h1{font:800 clamp(30px,6vw,48px) Orbitron;margin:15px 0}.final-score{font:800 54px Orbitron;color:var(--cyan);margin:15px}.result-panel p{color:#b7c2dc;line-height:1.7}.result-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:25px}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{transform:scale(1.08);filter:drop-shadow(0 0 38px #50e6ff)}}
+@media(max-width:760px){.mission-layout{grid-template-columns:1fr}.side-card{order:2}.mission-art{height:170px}.topbar{align-items:flex-start;flex-direction:column}.stats{width:100%}.stat{flex:1}.logo{letter-spacing:-2px}.mission-content{padding:20px}}
+</style>
+</head>
+<body>
+<section id="home" class="screen active">
+ <div class="wrap">
+  <div class="eyebrow">A sci-fi grammar adventure</div>
+  <div class="logo">TIME<br><span>TRAVELERS</span></div>
+  <div class="subtitle">MISSION TO THE FUTURE</div>
+  <div class="portal"><div class="portal-icon">⌛</div></div>
+  <p class="intro">The year is 3026. The timeline is collapsing, and the future is disappearing. Become a Time Agent, complete your missions and save humanity by mastering the future!</p>
+  <button class="primary" onclick="startGame()">▶ &nbsp; START MISSION</button>
+  <div class="hint">5 MISSIONS &nbsp; • &nbsp; 2 FUTURE TENSES &nbsp; • &nbsp; 1 TIMELINE TO SAVE</div>
+ </div>
+</section>
+<section id="game" class="screen">
+ <div class="wrap">
+  <header class="topbar">
+   <div class="mini-logo">TIME <span>TRAVELERS</span> <small style="font:10px Inter;color:#8792b3"> / FIELD OPERATION</small></div>
+   <div class="stats">
+    <div class="stat"><small>AGENT SCORE</small><strong id="score">000</strong></div>
+    <div class="stat"><small>ENERGY</small><strong id="energy">♥ ♥ ♥</strong></div>
+    <div class="stat"><small>MISSION</small><strong id="missionCount">01/05</strong></div>
+   </div>
+  </header>
+  <div class="progress-wrap"><div class="progress-label"><span>TIMELINE RESTORATION</span><span id="progressText">0% COMPLETE</span></div><div class="progress"><div id="progressBar"></div></div></div>
+  <div class="mission-layout">
+   <main class="mission-card">
+    <div class="mission-art"><div class="art-emoji" id="art">🚨</div></div>
+    <div class="mission-content">
+     <span class="tag" id="missionTag">MISSION 01 — EMERGENCY</span>
+     <h1 id="missionTitle">The spaceship is losing control!</h1>
+     <p class="scenario" id="scenario"></p>
+     <div class="sentence" id="sentence"></div>
+     <div class="answers" id="answers"></div>
+     <div class="feedback" id="feedback"></div>
+     <div class="mission-actions"><button class="primary" id="nextBtn" style="display:none" onclick="nextMission()">NEXT MISSION &nbsp; →</button></div>
+    </div>
+   </main>
+   <aside class="side-card">
+    <div class="side-title">◈ &nbsp; TIME AGENT'S GRAMMAR GUIDE</div>
+    <div class="rule will"><h3>WILL</h3><p>Use it for <b>spontaneous decisions</b>, promises and opinions or predictions without present evidence.<br><br><b>Example:</b> “I'll help you!”</p></div>
+    <div class="rule going"><h3>BE GOING TO</h3><p>Use it for <b>plans already decided</b> and predictions based on present evidence.<br><br><b>Example:</b> “Look at those clouds! It's going to rain.”</p></div>
+    <div class="tip">TIME AGENT TIP<br>Ask yourself: Is it a decision made right now, or a plan/evidence that already exists?</div>
+   </aside>
+  </div>
+ </div>
+</section>
+<section id="result" class="screen">
+ <div class="wrap"><div class="result-panel">
+  <div class="trophy" id="resultIcon">🏆</div>
+  <div class="eyebrow">Operation completed</div>
+  <h1 id="resultTitle">TIMELINE RESTORED!</h1>
+  <div class="final-score" id="finalScore">500</div>
+  <p id="resultText">Great work, Time Agent! You helped restore the future.</p>
+  <div class="result-actions"><button class="primary" onclick="startGame()">↻ &nbsp; PLAY AGAIN</button><button class="secondary" onclick="showScreen('home')">MAIN MENU</button></div>
+ </div></div>
+</section>
+<script>
+const missions=[
+ {tag:"MISSION 01 — EMERGENCY",type:"will",art:"🚨",title:"The spaceship is losing control!",scenario:"Your partner is in danger. You make a decision immediately. What do you say?",before:"Don't worry! I ",blank:" save you!",options:["will","am going to"],correct:0,explain:"WILL is correct. You are making a spontaneous decision at the moment of speaking."},
+ {tag:"MISSION 02 — THE PLAN",type:"plan",art:"🗓️",title:"A trip to Mars is scheduled!",scenario:"Your team booked the spaceship yesterday. The trip is already planned.",before:"We ",blank:" travel to Mars next Monday.",options:["will","are going to"],correct:1,explain:"BE GOING TO is correct. The trip is a plan that was decided before this moment."},
+ {tag:"MISSION 03 — WARNING",type:"evidence",art:"🌩️",title:"A dangerous storm is coming!",scenario:"Look at the dark clouds and the lightning! You can see clear evidence of what is about to happen.",before:"Look at those clouds! It ",blank:" rain!",options:["will","is going to"],correct:1,explain:"BE GOING TO is correct. This prediction is based on present evidence: the dark clouds and lightning."},
+ {tag:"MISSION 04 — THE PROMISE",type:"will",art:"🤝",title:"Your teammate needs help!",scenario:"Your teammate asks you to protect the time machine. You promise to do it.",before:"I promise I ",blank:" protect the time machine.",options:["will","am going to"],correct:0,explain:"WILL is correct. We commonly use WILL to make promises."},
+ {tag:"MISSION 05 — FINAL COUNTDOWN",type:"plan",art:"🛠️",title:"The future needs a new energy source!",scenario:"Your team has already decided to build a new energy reactor. The plans are ready!",before:"Our team ",blank:" build a new energy reactor.",options:["will","is going to"],correct:1,explain:"BE GOING TO is correct. The team has already made this plan."}
+];
+let current=0,score=0,energy=3,answered=false;
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function startGame(){current=0;score=0;energy=3;renderMission();showScreen('game')}
+function renderMission(){
+ const m=missions[current];answered=false;
+ document.getElementById('score').textContent=String(score).padStart(3,'0');
+ document.getElementById('energy').textContent=energy>0?'♥ '.repeat(energy).trim():'—';
+ document.getElementById('missionCount').textContent=String(current+1).padStart(2,'0')+'/05';
+ document.getElementById('progressText').textContent=Math.round(current/5*100)+'% COMPLETE';
+ document.getElementById('progressBar').style.width=(current/5*100)+'%';
+ document.getElementById('art').textContent=m.art;
+ document.getElementById('missionTag').textContent=m.tag;
+ document.getElementById('missionTag').className='tag '+(m.type==='plan'?'plan':m.type==='evidence'?'evidence':'');
+ document.getElementById('missionTitle').textContent=m.title;
+ document.getElementById('scenario').textContent=m.scenario;
+ document.getElementById('sentence').innerHTML=m.before+'<span class="blank">______</span>'+m.blank;
+ const answers=document.getElementById('answers');answers.innerHTML='';
+ m.options.forEach((opt,i)=>{const b=document.createElement('button');b.className='answer';b.innerHTML='<span class="letter">'+String.fromCharCode(65+i)+'</span><strong>'+opt.toUpperCase()+'</strong>';b.onclick=()=>choose(i,b);answers.appendChild(b)});
+ const fb=document.getElementById('feedback');fb.className='feedback';fb.innerHTML='';
+ document.getElementById('nextBtn').style.display='none';
+}
+function choose(i,button){
+ if(answered)return;answered=true;const m=missions[current];const buttons=[...document.querySelectorAll('.answer')];buttons.forEach(b=>b.disabled=true);
+ const fb=document.getElementById('feedback');
+ if(i===m.correct){score+=100;button.classList.add('correct');fb.className='feedback show good';fb.innerHTML='<strong>✓ MISSION SUCCESSFUL  +100 POINTS</strong>'+m.explain}
+ else{energy=Math.max(0,energy-1);button.classList.add('wrong');buttons[m.correct].classList.add('correct');fb.className='feedback show bad';fb.innerHTML='<strong>✕ INCORRECT ANSWER</strong>'+m.explain+'<br><br>One energy unit lost.'}
+ document.getElementById('score').textContent=String(score).padStart(3,'0');
+ document.getElementById('energy').textContent=energy>0?'♥ '.repeat(energy).trim():'—';
+ document.getElementById('nextBtn').style.display='inline-block';
+ document.getElementById('nextBtn').textContent=current===missions.length-1?'VIEW RESULTS →':'NEXT MISSION →';
+}
+function nextMission(){if(current<missions.length-1){current++;renderMission()}else{finishGame()}}
+function finishGame(){
+ showScreen('result');document.getElementById('finalScore').textContent=score+' PTS';
+ const perfect=score===500;document.getElementById('resultIcon').textContent=perfect?'🏆':score>=300?'🌟':'🛰️';
+ document.getElementById('resultTitle').textContent=perfect?'TIMELINE RESTORED!':score>=300?'MISSION ACCOMPLISHED!':'MISSION COMPLETE';
+ document.getElementById('resultText').textContent=perfect?'Perfect score! You mastered WILL and BE GOING TO. The future is safe thanks to you!':score>=300?'Great work, Time Agent! You helped restore the future. Review the grammar guide and try for a perfect score!':'You completed the journey! Review the grammar guide, recharge and try again to save the timeline.';
+ document.getElementById('progressBar').style.width='100%';document.getElementById('progressText').textContent='100% COMPLETE';
+}
+</script>
+</body>
+</html>
